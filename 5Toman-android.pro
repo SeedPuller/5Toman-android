@@ -20,8 +20,8 @@ SOURCES += \
 
 RESOURCES += qml.qrc
 
-TRANSLATIONS += \
-    5Toman-android_en_US.ts
+#TRANSLATIONS += \
+#    5Toman-android_en_US.ts
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
