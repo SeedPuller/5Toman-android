@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>MyListView.qml</file>
+        <file>ViewDelegate.qml</file>
+        <file>RoundedImage.qml</file>
+        <file>MyToolBar.qml</file>
+        <file>MyButton.qml</file>
+        <file>SidePane.qml</file>
+        <file>AboutPage.qml</file>
+        <file>ProfilePage.qml</file>
+        <file>MySwitch.qml</file>
+        <file>MainPage.qml</file>
+        <file>pic/default-profile-pic.png</file>
+        <file>MySpinBox.qml</file>
+        <file>pic/minus.svg</file>
+        <file>pic/plus.svg</file>
+        <file>fonts/fontello.ttf</file>
+    </qresource>
+</RCC>
