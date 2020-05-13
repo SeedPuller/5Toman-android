@@ -275,7 +275,7 @@ bool ViewModel::changeRow(QVariantList params)
 
 QVariantList ViewModel::getIndexData(int index) const
 {
-    if (index < 0) {
+    if (index < 0 || index >= vlist.size() || vlist.isEmpty()) {
         return QVariantList();
     }
     return vlist.at(index);

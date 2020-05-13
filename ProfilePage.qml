@@ -53,7 +53,14 @@ Page {
             Layout.preferredWidth: mainwindow.width * 0.4
             Layout.preferredHeight: mainwindow.width * 0.4
             Layout.alignment: Qt.AlignHCenter
-            source: editmode ? model[roles["picurl"]] : "pic/default-profile-pic.png"
+            source: {
+                if (editmode && model[0] != undefined) {
+                    return model[roles["picurl"]]
+                }
+                return "pic/default-profile-pic.png"
+
+            }
+
             Rectangle {
                 id: changerect
                 anchors.fill: parent
@@ -92,7 +99,12 @@ Page {
             Layout.alignment: Qt.AlignHCenter
             placeholderText: "Type here"
             Layout.preferredWidth: mainwindow.width * 0.75
-            text: editmode ? model[roles["firstname"]] : ""
+            text: {
+                if (editmode && model[0] != undefined) {
+                    return model[roles["firstname"]]
+                }
+                return ""
+            }
         }
         Label {
             Layout.leftMargin: mainwindow.width * 0.12
@@ -106,7 +118,13 @@ Page {
             Layout.alignment: Qt.AlignHCenter
             placeholderText: "Type here"
             Layout.preferredWidth: mainwindow.width * 0.75
-            text: editmode ? model[roles["lastname"]] : ""
+            text: {
+                if (editmode && model[0] != undefined) {
+                    return model[roles["lastname"]]
+                }
+                return ""
+            }
+
         }
 
         MySpinBox {
@@ -115,7 +133,12 @@ Page {
             Layout.preferredHeight: 25
             Layout.topMargin: 20
             Layout.alignment: Qt.AlignHCenter
-            value: editmode ? Number(model[roles["value"]]) : 0
+            value: {
+                if (editmode && model[0] != undefined) {
+                    return Number(model[roles["value"]])
+                }
+                return 0
+            }
         }
 
         RowLayout {
@@ -218,8 +241,8 @@ Page {
         }
     }
 
-    function changeUserType(isusertypecreditor) {
-        if (isusertypecreditor) {
+    function changeUserType(temp) {
+        if (temp) {
             DebtorModel.remove(profpage.index)
             CreditorModel.insertFirst(firstnameinput.text,
                                     lasttnameinput.text,
