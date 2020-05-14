@@ -1,5 +1,8 @@
-QT += quick sql svg
+QT += quick sql
 
+android{
+QT += androidextras svg
+}
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -21,8 +24,6 @@ SOURCES += \
 RESOURCES += qml.qrc
 
 
-#TRANSLATIONS += \
-#    5Toman-android_en_US.ts
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
