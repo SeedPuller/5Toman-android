@@ -6,7 +6,7 @@ Drawer {
 
     readonly property string textcolor: "#cfcfcf"
     readonly property bool inPortrait: true
-    width: mainwindow.width / 2
+    width: mainwindow.width / 1.5
     height: mainwindow.height
 
     modal: inPortrait
@@ -23,35 +23,38 @@ Drawer {
         header: Rectangle {
             color: "#526158"
             width: parent.width
-            height: 50
+            height: 70
             Text {
                 text: "5Toman"
                 font.pixelSize: 20
                 color: "#cfcfcf"
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
-                anchors.leftMargin: 10
+                anchors.leftMargin: 30
             }
         }
 
         footer: ItemDelegate {
             id: footer
             width: parent.width
+            height: 80
             RowLayout {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
-                anchors.leftMargin: 14
-                spacing: 10
+                anchors.leftMargin: 34
+                spacing: 34
                 Text {
                     id: aboutsign
                     text: "\uf129" // information sign
                     color: textcolor
                     font.family: "fontello"
-                    font.pixelSize: 15
+                    font.pixelSize: 20
                 }
                 Text {
                     text: "About"
                     color: textcolor
+                    font.pixelSize: 15
+                    font.bold: Font.Bold
                 }
             }
             MenuSeparator {
@@ -80,7 +83,7 @@ Drawer {
             state: expandmode ? "expand" : "not-expand"
             onClicked: expandmode = !expandmode
             width: parent.width
-            height: 50
+            height: 80
             states: [
                 State {
                     name: "expand"
@@ -124,17 +127,20 @@ Drawer {
                 id: titlesection
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
-                anchors.leftMargin: 10
+                anchors.leftMargin: 30
+                spacing: 34
                 Text {
                     id: sign
                     text: model.sign
                     color: textcolor
                     font.family: "fontello"
-                    font.pixelSize: 15
+                    font.pixelSize: 20
                 }
                 Text {
                     text: model.title
                     color: textcolor
+                    font.pixelSize: 15
+                    font.bold: Font.Bold
                 }
             }
             Text {
@@ -142,7 +148,7 @@ Drawer {
                 visible: false
                 anchors.top: titlesection.bottom
                 anchors.left: titlesection.left
-                anchors.leftMargin: 15
+                anchors.leftMargin: 55
                 color: textcolor
                 text: {
                     if (DebtorModel != null && CreditorModel != null) {
