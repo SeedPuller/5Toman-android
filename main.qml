@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
+
 ApplicationWindow {
     visible: true
     width: 480
@@ -8,13 +9,13 @@ ApplicationWindow {
     title: "5Toman"
     id: mainwindow
 
+    FontLoader { source: "fonts/fontello.ttf" }
 
     StackView {
         anchors.fill: parent
         id: stackview
         initialItem: mainpage
         Keys.onBackPressed: stackview.depth > 1 ? stackview.pop() : {}
-//        Keys.onReturnPressed: stackview.depth > 1 ? stackview.pop() : {}
     }
 
     Component {

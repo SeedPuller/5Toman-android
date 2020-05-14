@@ -31,7 +31,9 @@ Page {
             clearup()
             stackview.pop()
         }
-        button.text: "\u2190"
+//        button.text: "\ue802" // return icon
+        button.text: "\ue801" // return icon
+        font.family: "fontello"
     }
 
     Rectangle {
@@ -49,7 +51,7 @@ Page {
         spacing: 0
         RoundedImage {
             id: profimage
-            fillMode: Image.PreserveAspectCrop
+            fillMode: Image.PreserveAspectFit
             Layout.preferredWidth: mainwindow.width * 0.4
             Layout.preferredHeight: mainwindow.width * 0.4
             Layout.alignment: Qt.AlignHCenter

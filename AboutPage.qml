@@ -8,7 +8,7 @@ Page {
     header: MyToolBar {
         text.text: "About"
         button.onClicked: stackview.pop()
-        button.text: "\u2190"
+        button.text: "\ue801" // return icon
     }
     Rectangle {
         width: parent.width
@@ -66,7 +66,7 @@ Page {
                     anchors.top: abouttitle.bottom
                     anchors.topMargin: 5
                     text: "<b>Avid Group</b><br>This is a friendship-based group<br><br><b>Code On Github:</b><br>
-<a href='https://Github.com'>https://github.com</a><br><br><b>Contact us:</b><br>Vida Azadi: azadivida@gmail.com<br>SeedPuller: SeedPuller@gmail.com"
+<a href='https://Github.com'>https://github.com/SeedPuller/5Toman-android</a><br><br><b>Contact us:</b><br>Vida Azadi: azadivida@gmail.com<br>SeedPuller: SeedPuller@gmail.com"
                     wrapMode: Text.WordWrap
                 }
             }

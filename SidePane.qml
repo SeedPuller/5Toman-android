@@ -3,7 +3,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
 Drawer {
-    FontLoader { source: "fonts/fontello.ttf" }
+
     readonly property string textcolor: "#cfcfcf"
     readonly property bool inPortrait: true
     width: mainwindow.width / 2

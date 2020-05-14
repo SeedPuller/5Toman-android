@@ -13,13 +13,15 @@ ToolBar {
         anchors.leftMargin: 5
         ToolButton {
             id: __toolbtn
-            text: "‫‪\u2630"
-            font.pixelSize: 40
+            text: "‫‪\uf0c9" // hamburger icon
+            font.pixelSize: 25
+            font.family: "fontello"
             contentItem: Text{
                 text: __toolbtn.text
                 font: __toolbtn.font
                 color: "#cfcfcf"
                 leftPadding: 5
+                topPadding: 5
             }
         }
         Text {
