@@ -50,10 +50,13 @@ Page {
         spacing: 0
         RoundedImage {
             id: profimage
-            fillMode: Image.PreserveAspectFit
+            fillMode: Image.PreserveAspectCrop
+            sourceSize.width: 748
+            sourceSize.height: 748
             Layout.preferredWidth: mainwindow.width * 0.4
             Layout.preferredHeight: mainwindow.width * 0.4
             Layout.alignment: Qt.AlignHCenter
+            asynchronous: true
             source: {
                 if (editmode && model[0] != undefined) {
                     return model[roles["picurl"]]
