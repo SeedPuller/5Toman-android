@@ -147,7 +147,7 @@ Page {
 
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 20
+            Layout.topMargin: 30
             spacing: 15
             Label {
                 text: "Debtor"
@@ -175,10 +175,12 @@ Page {
             Layout.bottomMargin: 50
             text: "Save"
             contentText.color: "black"
+            contentText.font.pixelSize: 15
             contentText.font.bold: Font.Medium
             bgitem.radius: 20
             bgitem.border.width: 0
             bgitem.implicitWidth: 80
+            bgitem.implicitHeight: 30
             bgitem.color: "#fe615a"
             onClicked: {
                 var isusertypecreditor = roleinput.choosed
