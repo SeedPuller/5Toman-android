@@ -8,14 +8,14 @@ ApplicationWindow {
     height: 640
     title: "5Toman"
     id: mainwindow
-
     FontLoader { source: "fonts/fontello.ttf" }
 
     StackView {
         anchors.fill: parent
         id: stackview
         initialItem: mainpage
-        Keys.onBackPressed: stackview.depth > 1 ? stackview.pop() : {}
+        Keys.onBackPressed: stackview.depth > 1 ? stackview.pop() : Qt.quit()
+        property bool profilepageEditMode: false
     }
 
     Component {
