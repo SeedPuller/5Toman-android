@@ -31,7 +31,6 @@ Page {
             clearup()
             stackview.pop()
         }
-//        button.text: "\ue802" // return icon
         button.text: "\ue801" // return icon
         font.family: "fontello"
     }
