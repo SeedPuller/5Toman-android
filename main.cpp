@@ -1,7 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QtAndroid>
 #include "viewmodel.h"
+#include "myclass.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +13,19 @@ int main(int argc, char *argv[])
     app.setOrganizationName("AVID LTD.");
     app.setOrganizationDomain("SeedPuller.space");
     app.setApplicationName("5 Toman");
-//    app.setWindowIcon(QIcon(":/pic/logo.png"));
+    auto result = QtAndroid::checkPermission(QString("android.permission.READ_EXTERNAL_STORAGE"));
+    auto result2 = QtAndroid::checkPermission(QString("android.permission.WRITE_EXTERNAL_STORAGE"));
+    if(result == QtAndroid::PermissionResult::Denied || result2 == QtAndroid::PermissionResult::Denied){
+        QtAndroid::PermissionResultMap resulthash = QtAndroid::requestPermissionsSync(QStringList({"android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE"}));
+        if (resulthash["android.permission.READ_EXTERNAL_STORAGE"] == QtAndroid::PermissionResult::Denied
+                || resulthash["android.permission.WRITE_EXTERNAL_STORAGE"] == QtAndroid::PermissionResult::Denied) {
+            return 0;
+        }
+    }
+
+    /* this is for native file manager testing */
+    MyClass t;
+    t.test();
 
     // add model to qml
 //    qmlRegisterType<ViewModel>("Model.ViewModel", 1, 0, "ViewModel");
