@@ -6,20 +6,15 @@ import QtQuick.Dialogs 1.2
 Page {
     id: profpage
     property string textcolor: "black"
-    property bool editmode: false
-    property bool iscreditor: false
-    property var index: -1
+    property bool editmode: stackview.profilepageEditMode
+    property bool iscreditor: stackview.profilepageModelIsCreditor
+    property var model: stackview.profilepageModel
     property var roles: {"id": 0, "firstname": 1, "lastname": 2, "value": 3, "picurl": 4}
-    property var model: {
-        if (iscreditor) {
-            return CreditorModel.getIndexData(index)
-        }
-//        return stackview.get(0).debtormodel.get(index)
-        return DebtorModel.getIndexData(index)
-    }
+    property var modelitem: stackview.profilepageEditMode ? model.getIndexData(stackview.profilepageModelindex) : null
 
     function clearup() {
-        editmode = false
+        stackview.profilepageEditMode = false
+        stackview.profilepageModelIsCreditor = false
     }
 
     width: mainwindow.width
@@ -32,7 +27,7 @@ Page {
             stackview.pop()
         }
         button.text: "\ue801" // return icon
-        font.family: "fontello"
+        button.font.family: "fontello"
     }
 
     Rectangle {
@@ -57,13 +52,8 @@ Page {
             Layout.preferredHeight: mainwindow.width * 0.4
             Layout.alignment: Qt.AlignHCenter
             asynchronous: true
-            source: {
-                if (editmode && model[0] != undefined) {
-                    return model[roles["picurl"]]
-                }
-                return "pic/default-profile-pic.png"
+            source: editmode ? modelitem[roles["picurl"]] : "pic/default-profile-pic.png"
 
-            }
 
             Rectangle {
                 id: changerect
@@ -103,12 +93,7 @@ Page {
             Layout.alignment: Qt.AlignHCenter
             placeholderText: "Type here"
             Layout.preferredWidth: mainwindow.width * 0.75
-            text: {
-                if (editmode && model[0] != undefined) {
-                    return model[roles["firstname"]]
-                }
-                return ""
-            }
+            text: editmode ? modelitem[roles["firstname"]] : ""
         }
         Label {
             Layout.leftMargin: mainwindow.width * 0.12
@@ -122,12 +107,7 @@ Page {
             Layout.alignment: Qt.AlignHCenter
             placeholderText: "Type here"
             Layout.preferredWidth: mainwindow.width * 0.75
-            text: {
-                if (editmode && model[0] != undefined) {
-                    return model[roles["lastname"]]
-                }
-                return ""
-            }
+            text: editmode ? modelitem[roles["lastname"]] : ""
 
         }
 
@@ -137,12 +117,7 @@ Page {
             Layout.preferredHeight: 25
             Layout.topMargin: 20
             Layout.alignment: Qt.AlignHCenter
-            value: {
-                if (editmode && model[0] != undefined) {
-                    return Number(model[roles["value"]])
-                }
-                return 0
-            }
+            value: editmode ? Number(modelitem[roles["value"]]) : 0
         }
 
         RowLayout {
@@ -184,6 +159,7 @@ Page {
             bgitem.color: "#fe615a"
             onClicked: {
                 var isusertypecreditor = roleinput.choosed
+                // insert mode
                 if (!editmode) {
                     if (isusertypecreditor) {
                         CreditorModel.insertFirst(firstnameinput.text,
@@ -194,6 +170,7 @@ Page {
                         stackview.pop()
                         return
                     }
+
                     DebtorModel.insertFirst(firstnameinput.text,
                                             lasttnameinput.text,
                                             valueinput.value,
@@ -214,19 +191,11 @@ Page {
                     return
                 }
 
-                if (isusertypecreditor) {
-                    CreditorModel.setData(index, firstnameinput.text, roles["firstname"])
-                    CreditorModel.setData(index, lasttnameinput.text, roles["lastname"])
-                    CreditorModel.setData(index, valueinput.value, roles["value"])
-                    CreditorModel.setData(index, profimage.source.toString(), roles["picurl"])
-                    CreditorModel.updateDB(index)
-                } else {
-                    DebtorModel.setData(index, firstnameinput.text, roles["firstname"])
-                    DebtorModel.setData(index, lasttnameinput.text, roles["lastname"])
-                    DebtorModel.setData(index, valueinput.value, roles["value"])
-                    DebtorModel.setData(index, profimage.source.toString(), roles["picurl"])
-                    DebtorModel.updateDB(index)
-                }
+                model.setData(index, firstnameinput.text, roles["firstname"])
+                model.setData(index, lasttnameinput.text, roles["lastname"])
+                model.setData(index, valueinput.value, roles["value"])
+                model.setData(index, profimage.source.toString(), roles["picurl"])
+                model.updateDB(index)
                 clearup()
                 stackview.pop()
             }
@@ -247,22 +216,19 @@ Page {
         }
     }
 
-    function changeUserType(temp) {
-        if (temp) {
+    function changeUserType(isusercreditor) {
+        if (isusercreditor) {
             DebtorModel.remove(profpage.index)
             CreditorModel.insertFirst(firstnameinput.text,
                                     lasttnameinput.text,
                                     valueinput.value,
                                     profimage.source.toString())
-
-        } else {
-            CreditorModel.remove(profpage.index)
-            DebtorModel.insertFirst(firstnameinput.text,
-                                    lasttnameinput.text,
-                                    valueinput.value,
-                                    profimage.source.toString())
+            return
         }
-        DebtorModel.updateTotalValue()
-        CreditorModel.updateTotalValue()
+        CreditorModel.remove(profpage.index)
+        DebtorModel.insertFirst(firstnameinput.text,
+                                lasttnameinput.text,
+                                valueinput.value,
+                                profimage.source.toString())
     }
 }

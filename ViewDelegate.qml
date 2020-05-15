@@ -17,11 +17,15 @@ Item {
                 delegatemenu.open()
             }
             onClicked: {
+//                var currentitem = stackview.currentItem
+//                currentitem.index = index
+//                currentitem.editmode = true
+//                currentitem.iscreditor = iscreditor
+                stackview.profilepageModelindex = index
+                stackview.profilepageEditMode = true
+                stackview.profilepageModelIsCreditor = iscreditor
+                stackview.profilepageModel = iscreditor ? CreditorModel : DebtorModel
                 stackview.push(profilepage)
-                var currentitem = stackview.currentItem
-                currentitem.index = index
-                currentitem.editmode = true
-                currentitem.iscreditor = iscreditor
             }
 
             ColumnLayout {

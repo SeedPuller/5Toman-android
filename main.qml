@@ -15,7 +15,13 @@ ApplicationWindow {
         id: stackview
         initialItem: mainpage
         Keys.onBackPressed: stackview.depth > 1 ? stackview.pop() : Qt.quit()
+        /*
+          these are parameters for ProfilePage. there is better way to do this probably
+        */
         property bool profilepageEditMode: false
+        property bool profilepageModelIsCreditor
+        property var profilepageModel
+        property real profilepageModelindex: -1
     }
 
     Component {
