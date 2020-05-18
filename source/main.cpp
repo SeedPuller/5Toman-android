@@ -2,8 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtAndroid>
-#include "viewmodel.h"
-#include "imagepickerandroid.h"
+#include "header/viewmodel.h"
+#include "header/imagepickerandroid.h"
 
 int main(int argc, char *argv[])
 {

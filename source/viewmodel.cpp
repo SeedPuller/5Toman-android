@@ -1,5 +1,6 @@
-#include "viewmodel.h"
+#include "header/viewmodel.h"
 #include <QDebug>
+
 ViewModel::ViewModel(const char* tablename, QObject *parent)
     : QAbstractListModel(parent), lastid{-1}, tablename(tablename), db{QString(DB_HOSTNAME), QString(DB_NAME), QString(tablename)}
 {

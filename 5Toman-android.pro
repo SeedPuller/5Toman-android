@@ -17,12 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        database.cpp \
-        imagepickerandroid.cpp \
-        main.cpp \
-        viewmodel.cpp
+        source/database.cpp \
+        source/imagepickerandroid.cpp \
+        source/main.cpp \
+        source/viewmodel.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml/qml.qrc
 
 
 
@@ -38,9 +38,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    database.h \
-    imagepickerandroid.h \
-    viewmodel.h
+    header/database.h \
+    header/imagepickerandroid.h \
+    header/viewmodel.h
 
 DISTFILES += \
     android/AndroidManifest.xml \
