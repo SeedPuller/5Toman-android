@@ -1,11 +1,35 @@
-#ifndef IMAGEPICKERANDROID_H
-#define IMAGEPICKERANDROID_H
+#ifndef AndroidImgePicker_H
+#define AndroidImgePicker_H
 
+#include <QObject>
+#include <QtAndroidExtras>
 
-class ImagePickerAndroid
+#include <QDebug>
+
+class AndroidImgePicker : public QObject, public QAndroidActivityResultReceiver
 {
+    Q_OBJECT
+    Q_PROPERTY(bool accepted READ isAccepted NOTIFY accepted)
+
 public:
-    ImagePickerAndroid();
+    AndroidImgePicker();
+
+    virtual void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data);
+
+public slots:
+    QString getPath();
+    void open();
+    bool isAccepted();
+signals:
+    void imagePathSignal(QString);
+    void accepted();
+
+private slots:
+    void setImagePath(QString path);
+
+private:
+    QString imagePath;
+    bool newchoice;
 };
 
-#endif // IMAGEPICKERANDROID_H
+#endif // AndroidImgePicker_H

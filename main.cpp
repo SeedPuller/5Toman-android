@@ -3,7 +3,7 @@
 #include <QQmlContext>
 #include <QtAndroid>
 #include "viewmodel.h"
-#include "myclass.h"
+#include "imagepickerandroid.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,12 +23,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    /* this is for native file manager testing */
-    MyClass t;
-    t.test();
-
-    // add model to qml
-//    qmlRegisterType<ViewModel>("Model.ViewModel", 1, 0, "ViewModel");
     QQmlApplicationEngine engine;
 
     // add model to qml
@@ -36,6 +30,8 @@ int main(int argc, char *argv[])
     ViewModel creditormodel("creditors");
     engine.rootContext()->setContextProperty("DebtorModel", &debtormodel);
     engine.rootContext()->setContextProperty("CreditorModel", &creditormodel);
+    // add image picker to qml
+    qmlRegisterType<AndroidImgePicker>("Android.ImagePicker", 1, 0, "ImagePicker");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
