@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Dialogs 1.2
+import Android.ImagePicker 1.0
 
 Page {
     id: profpage
@@ -11,6 +12,7 @@ Page {
     property var model: stackview.profilepageModel
     property var roles: {"id": 0, "firstname": 1, "lastname": 2, "value": 3, "picurl": 4}
     property var modelitem: stackview.profilepageEditMode ? model.getIndexData(stackview.profilepageModelindex) : null
+    property real index: stackview.profilepageModelindex
 
     function clearup() {
         stackview.profilepageEditMode = false
@@ -76,7 +78,7 @@ Page {
                 }
                 MenuItem {
                     text: "Pick Photo"
-                    onTriggered: filedialog.open()
+                    onTriggered: imagepicker.open()
                 }
             }
         }
@@ -196,23 +198,18 @@ Page {
                 model.setData(index, valueinput.value, roles["value"])
                 model.setData(index, profimage.source.toString(), roles["picurl"])
                 model.updateDB(index)
+                console.log(index)
                 clearup()
                 stackview.pop()
             }
         }
     }
 
-    FileDialog {
-        id: filedialog
-        title: "choose file"
-        folder: shortcuts.home
-//        property var index: 0
-        function makeenable(indexnum) {
-            index = Number(indexnum)
-            fdialog.visible = true
-        }
+    ImagePicker {
+        id: imagepicker
         onAccepted: {
-            profimage.source = filedialog.fileUrl
+            profimage.source = imagepicker.getPath()
+            console.log(imagepicker.getPath())
         }
     }
 
