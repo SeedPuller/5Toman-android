@@ -1,2 +1,7 @@
+#0.5.3-beta
+save button size changed
+spinbox minus sign visibility changed
+#0.5.1-beta
+sidepane bounds overrun bug fixed
 #0.5.0-beta
 initial release
