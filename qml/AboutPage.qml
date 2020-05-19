@@ -35,7 +35,7 @@ Page {
                 Text {
                     anchors.top: versiontitle.bottom
                     anchors.topMargin: 5
-                    text: "0.5.0-beta"
+                    text: "0.5.3-beta"
                 }
             }
 
