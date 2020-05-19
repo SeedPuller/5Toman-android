@@ -19,6 +19,7 @@ Drawer {
         anchors.fill: parent
 
         headerPositioning: ListView.OverlayHeader
+        boundsBehavior: Flickable.StopAtBounds
 
         header: Rectangle {
             color: "#526158"
