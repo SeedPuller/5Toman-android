@@ -82,6 +82,7 @@ Page {
                 }
             }
         }
+
         Label {
             id: firstnamelabel
             Layout.leftMargin: mainwindow.width * 0.12
@@ -97,6 +98,7 @@ Page {
             Layout.preferredWidth: mainwindow.width * 0.75
             text: editmode ? modelitem[roles["firstname"]] : ""
         }
+
         Label {
             Layout.leftMargin: mainwindow.width * 0.12
             text: "Last Name:"
@@ -152,12 +154,12 @@ Page {
             Layout.bottomMargin: 50
             text: "Save"
             contentText.color: "black"
-            contentText.font.pixelSize: 15
+            contentText.font.pixelSize: (profpage.width * 0.1) / 2
             contentText.font.bold: Font.Medium
             bgitem.radius: 20
             bgitem.border.width: 0
-            bgitem.implicitWidth: 80
-            bgitem.implicitHeight: 30
+            bgitem.implicitWidth: profpage.width * 0.3
+            bgitem.implicitHeight: profpage.width * 0.1
             bgitem.color: "#fe615a"
             onClicked: {
                 var isusertypecreditor = roleinput.choosed

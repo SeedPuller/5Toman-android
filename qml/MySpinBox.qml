@@ -70,7 +70,7 @@ SpinBox {
             source: "pic/minus.svg"
         }
         Label {
-            visible: downindicator.enabled
+//            visible: downindicator.enabled
             anchors.centerIn: downindicatorimage
             text: "-"
             font.pixelSize: 20
