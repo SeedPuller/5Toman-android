@@ -1,7 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import QtQuick.Dialogs 1.2
 import Android.ImagePicker 1.0
 
 Page {
@@ -13,7 +12,6 @@ Page {
     property var roles: {"id": 0, "firstname": 1, "lastname": 2, "value": 3, "picurl": 4}
     property var modelitem: stackview.profilepageEditMode ? model.getIndexData(stackview.profilepageModelindex) : null
     property real index: stackview.profilepageModelindex
-
     function clearup() {
         stackview.profilepageEditMode = false
         stackview.profilepageModelIsCreditor = false
@@ -211,7 +209,6 @@ Page {
         id: imagepicker
         onAccepted: {
             profimage.source = imagepicker.getPath()
-            console.log(imagepicker.getPath())
         }
     }
 

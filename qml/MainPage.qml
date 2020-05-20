@@ -2,8 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.12
 
 Page {
-//    property alias debtormodel: debtormodel
-//    property alias creditormodel: creditormodel
+
     MyToolBar { id: toolbar; z: 1; button.onClicked: drawer.open() }
     TabBar {
         anchors.top: toolbar.bottom

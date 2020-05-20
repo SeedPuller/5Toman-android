@@ -17,10 +17,6 @@ Item {
                 delegatemenu.open()
             }
             onClicked: {
-//                var currentitem = stackview.currentItem
-//                currentitem.index = index
-//                currentitem.editmode = true
-//                currentitem.iscreditor = iscreditor
                 stackview.profilepageModelindex = index
                 stackview.profilepageEditMode = true
                 stackview.profilepageModelIsCreditor = iscreditor
@@ -70,7 +66,6 @@ Item {
                 radius: 5
             }
         }
-
     }
 }
 

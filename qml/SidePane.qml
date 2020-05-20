@@ -66,7 +66,6 @@ Drawer {
 
             onClicked: {
                 drawer.close()
-//                pageloader.source = "AboutPage.qml"
                 stackview.push(aboutpage)
             }
         }
