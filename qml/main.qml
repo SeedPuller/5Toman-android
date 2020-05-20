@@ -11,10 +11,12 @@ ApplicationWindow {
     FontLoader { source: "fonts/fontello.ttf" }
 
     StackView {
+        focus: true
         anchors.fill: parent
         id: stackview
         initialItem: mainpage
         Keys.onBackPressed: stackview.depth > 1 ? stackview.pop() : Qt.quit()
+
         /*
           these are parameters for ProfilePage. there is better way to do this probably
         */
